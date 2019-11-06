@@ -1,8 +1,9 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Fab from '@material-ui/core/Fab'
-import DeleteIcon from '@material-ui/icons/Delete'
-import Checkbox from '@material-ui/core/Checkbox'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles(theme => ({
 	todoItem: {
@@ -21,11 +22,11 @@ const useStyles = makeStyles(theme => ({
 	textWithStrike: {
 		textDecoration: 'line-through'
 	}
-}))
+}));
 
 const TodoItem = ({ todo, remove, update }) => {
-	const classes = useStyles()
-	const isTodoCompleted = todo.completed
+	const classes = useStyles();
+	const isTodoCompleted = todo.completed;
 
 	return (
 		<li className={classes.todoItem}>
@@ -47,7 +48,13 @@ const TodoItem = ({ todo, remove, update }) => {
 				<DeleteIcon />
 			</Fab>
 		</li>
-	)
-}
+	);
+};
 
-export default TodoItem
+TodoItem.propTypes = {
+	todo: PropTypes.object.isRequired,
+	remove: PropTypes.func.isRequired,
+	update: PropTypes.func.isRequired
+};
+
+export default TodoItem;

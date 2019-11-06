@@ -1,4 +1,4 @@
-const withOffline = require('next-offline')
+const withOffline = require('next-offline');
 
 module.exports = withOffline({
 	target: process.env.NEXT_TARGET || 'serverless',
@@ -30,5 +30,18 @@ module.exports = withOffline({
 				}
 			}
 		]
+	},
+	webpack: (config, { dev }) => {
+		if (dev) {
+			config.module.rules.push({
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'eslint-loader',
+				options: {
+					// eslint options (if necessary)
+				}
+			});
+		}
+		return config;
 	}
-})
+});

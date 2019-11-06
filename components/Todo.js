@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react'
-import Paper from '@material-ui/core/Paper'
-import TextField from '@material-ui/core/TextField'
-import Grid from '@material-ui/core/Grid'
-import { makeStyles } from '@material-ui/core/styles'
-import { TodoContext } from '../contexts/todos'
-import TodoItem from './TodoItem'
+import React, { useState, useContext } from 'react';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import { TodoContext } from '../contexts/todos';
+import TodoItem from './TodoItem';
 
 const useStyles = makeStyles(theme => ({
 	todo: {
@@ -23,25 +23,27 @@ const useStyles = makeStyles(theme => ({
 		listStyle: 'none',
 		padding: 0
 	}
-}))
+}));
 
 const Todo = () => {
-	const classes = useStyles()
-	const [text, setText] = useState('')
-	const { addTodo, removeTodo, updateTodo, todos } = useContext(TodoContext)
-	const completedTodos = todos.filter(todo => todo.completed)
+	const classes = useStyles();
+	const [text, setText] = useState('');
+	const { addTodo, removeTodo, updateTodo, todos } = useContext(TodoContext);
+	const completedTodos = todos.filter(todo => todo.completed);
 
 	const handleAddTodo = e => {
-		e.preventDefault()
-		const trimmedText = text.trim()
+		e.preventDefault();
+		const trimmedText = text.trim();
 
-		trimmedText && addTodo(trimmedText)
-		setText('')
-	}
+		if (trimmedText) {
+			addTodo(trimmedText);
+		}
+		setText('');
+	};
 
 	const handleTextChange = e => {
-		setText(e.target.value)
-	}
+		setText(e.target.value);
+	};
 
 	return (
 		<Grid
@@ -59,7 +61,7 @@ const Todo = () => {
 						fullWidth
 						value={text}
 						margin="normal"
-						label="What must be done?"
+						label="What must be done?!!"
 						onChange={handleTextChange}
 						inputProps={{ 'aria-label': 'What must be done?' }}
 					/>
@@ -71,9 +73,9 @@ const Todo = () => {
 					)}
 				</form>
 				<ul className={classes.list}>
-					{todos.map((todo, i) => (
+					{todos.map(todo => (
 						<TodoItem
-							key={i}
+							key={todo.text}
 							todo={todo}
 							remove={removeTodo}
 							update={updateTodo}
@@ -82,7 +84,7 @@ const Todo = () => {
 				</ul>
 			</Paper>
 		</Grid>
-	)
-}
+	);
+};
 
-export default Todo
+export default Todo;

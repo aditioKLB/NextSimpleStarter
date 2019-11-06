@@ -1,7 +1,8 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Fab from '@material-ui/core/Fab'
-import Badge from '@material-ui/core/Badge'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(() => ({
 	fork: {
@@ -9,10 +10,10 @@ const useStyles = makeStyles(() => ({
 		right: 30,
 		top: 30
 	}
-}))
+}));
 
 const Fork = ({ stars }) => {
-	const classes = useStyles()
+	const classes = useStyles();
 	return (
 		<div className={classes.fork}>
 			<Badge badgeContent={stars || 0} max={999} color="primary">
@@ -26,7 +27,11 @@ const Fork = ({ stars }) => {
 				</Fab>
 			</Badge>
 		</div>
-	)
-}
+	);
+};
 
-export default Fork
+Fork.propTypes = {
+	stars: PropTypes.number.isRequired
+};
+
+export default Fork;

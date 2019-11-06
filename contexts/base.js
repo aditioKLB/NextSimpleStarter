@@ -1,9 +1,14 @@
-import React, { createContext } from 'react'
+import React, { createContext } from 'react';
+import PropTypes from 'prop-types';
 
-export const BaseContext = createContext(null)
+export const BaseContext = createContext(null);
 
 const BaseProvider = ({ children }) => {
-	return <BaseContext.Provider value={null}>{children}</BaseContext.Provider>
-}
+	return <BaseContext.Provider value={null}>{children}</BaseContext.Provider>;
+};
 
-export default BaseProvider
+BaseProvider.propTypes = {
+	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
+};
+
+export default BaseProvider;

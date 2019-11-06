@@ -1,11 +1,12 @@
-import React from 'react'
-import ReactDom from 'react-dom'
-import Head from 'next/head'
-import App, { Container } from 'next/app'
-import Provider from '../contexts'
-import { createMuiTheme } from '@material-ui/core/styles'
-import { ThemeProvider } from '@material-ui/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import ReactDom from 'react-dom';
+import Head from 'next/head';
+import App from 'next/app';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Provider from '../contexts';
 
 export default class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
@@ -16,18 +17,19 @@ export default class MyApp extends App {
 					? await Component.getInitialProps(ctx)
 					: {})
 			}
-		}
+		};
 	}
 
 	componentDidMount() {
 		if (process.env.NODE_ENV !== 'production') {
-			const axe = require('react-axe')
-			axe(React, ReactDom, 1000)
+			// eslint-disable-next-line global-require
+			const axe = require('react-axe');
+			axe(React, ReactDom, 1000);
 		}
 	}
 
 	render() {
-		const { Component, pageProps } = this.props
+		const { Component, pageProps } = this.props;
 
 		const theme = createMuiTheme({
 			palette: {
@@ -38,7 +40,7 @@ export default class MyApp extends App {
 					main: '#673ab7'
 				}
 			}
-		})
+		});
 
 		return (
 			<>
@@ -53,6 +55,6 @@ export default class MyApp extends App {
 					</CssBaseline>
 				</ThemeProvider>
 			</>
-		)
+		);
 	}
 }

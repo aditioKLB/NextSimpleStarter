@@ -6,8 +6,12 @@
 		"url": "https://github.com/ooade/NextSimpleStarter"
 	},
 	"license": "MIT",
-	"eslintConfig": {
-		"extends": "react-app"
+	"pre-commit": "lint-staged",
+	"lint-staged": {
+		"*.js": [
+			"eslint --fix",
+			"git add"
+		]
 	},
 	"dependencies": {
 		"@apollo/react-hooks": "^3.1.3",
@@ -31,25 +35,36 @@
 		"react-dom": "16.11.0"
 	},
 	"scripts": {
-		"dev": "next",
+		"dev": "npm run lint && npm run clean-cache && next",
 		"start": "next start",
-		"lint": "eslint components",
+		"lint": "eslint --fix --ext .js pages components libraries constants actions reducers",
+		"lint:watch": "esw -w --fix pages components libraries constants actions reducers",
 		"build": "next build",
 		"build:server": "NEXT_TARGET=server next build",
+		"clean-cache": "rimraf -rf ./node_modules/.cache",
 		"export:server": "NEXT_TARGET=server next export",
 		"export": "npm run build:server && npm run export:server",
 		"start:static": "serve",
-		"now-build": "next build"
+		"now-build": "next build",
+		"lint-staged": "lint-staged"
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.0.3",
 		"eslint": "^6.2.0",
+		"eslint-config-airbnb": "^18.0.1",
+		"eslint-config-prettier": "^6.5.0",
 		"eslint-config-react-app": "^5.0.1",
+		"eslint-loader": "^3.0.2",
 		"eslint-plugin-flowtype": "^2.50.3",
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-prettier": "^3.1.1",
 		"eslint-plugin-react": "^7.14.3",
 		"eslint-plugin-react-hooks": "^1.5.0",
+		"eslint-watch": "^6.0.1",
+		"lint-staged": "^9.4.2",
+		"pre-commit": "^1.2.2",
+		"prettier": "^1.18.2",
 		"serve": "^11.1.0"
 	}
 }
