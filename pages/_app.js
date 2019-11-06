@@ -41,7 +41,7 @@ export default class MyApp extends App {
 		})
 
 		return (
-			<Container>
+			<>
 				<Head>
 					<title>Todo App</title>
 				</Head>
@@ -52,7 +52,7 @@ export default class MyApp extends App {
 						</Provider>
 					</CssBaseline>
 				</ThemeProvider>
-			</Container>
+			</>
 		)
 	}
 }
