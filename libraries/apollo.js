@@ -10,7 +10,6 @@ import { HttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { ApolloProvider } from '@apollo/react-hooks';
 import fetch from 'isomorphic-unfetch';
-import HTTPS from 'https-proxy-agent';
 
 let apolloClient = null;
 
@@ -21,11 +20,12 @@ let apolloClient = null;
  */
 function createApolloClient(initialState = {}, { getToken }) {
 	const fetchOptions = {};
-
 	// If you are using a https_proxy, add fetchOptions with 'https-proxy-agent' agent instance
 	// 'https-proxy-agent' is required here because it's a sever-side only module
 	if (typeof window === 'undefined') {
 		if (process.env.https_proxy) {
+			// eslint-disable-next-line global-require
+			const HTTPS = require('https-proxy-agent');
 			fetchOptions.agent = new HTTPS(process.env.https_proxy);
 		}
 	}

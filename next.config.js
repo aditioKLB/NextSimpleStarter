@@ -1,4 +1,9 @@
 const withOffline = require('next-offline');
+const dotEnvResult = require('dotenv').config();
+
+if (dotEnvResult.error) {
+	throw dotEnvResult.error;
+}
 
 module.exports = withOffline({
 	target: process.env.NEXT_TARGET || 'serverless',
@@ -41,5 +46,10 @@ module.exports = withOffline({
 			});
 		}
 		return config;
+	},
+	env: {
+		ARTICLE_URL: process.env.ARTICLE_URL,
+		ARTICLE_USERNAME: process.env.ARTICLE_USERNAME,
+		ARTICLE_PASSWORD: process.env.ARTICLE_PASSWORD
 	}
 });
