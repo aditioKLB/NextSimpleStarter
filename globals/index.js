@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TodoProvider from './todos';
-import BaseProvider from './base';
+import TodoProvider from './contexts/todos';
+import BaseProvider from './contexts/base';
 
 const Provider = ({ children }) => (
 	<TodoProvider>

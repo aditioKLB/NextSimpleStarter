@@ -6,7 +6,7 @@ import App from 'next/app';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Provider from '../contexts';
+import Provider from '../globals';
 
 export default class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {

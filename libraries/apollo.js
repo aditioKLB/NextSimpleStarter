@@ -110,7 +110,7 @@ export default function withApollo(PageComponent, { ssr = true } = {}) {
 
 		// Warn if old way of installing apollo is used
 		if (displayName === 'App') {
-			console.warn('This withApollo HOC only works with PageComponents.');
+			// console.warn('This withApollo HOC only works with PageComponents.');
 		}
 
 		// Set correct display name for devtools
@@ -172,7 +172,7 @@ export default function withApollo(PageComponent, { ssr = true } = {}) {
 						// Prevent Apollo Client GraphQL errors from crashing SSR.
 						// Handle them in components via the data.error prop:
 						// https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error
-						console.error('Error while running `getDataFromTree`', error);
+						// console.error('Error while running `getDataFromTree`', error);
 					}
 				}
 
