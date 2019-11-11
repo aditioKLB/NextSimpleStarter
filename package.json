@@ -37,8 +37,8 @@
 	"scripts": {
 		"dev": "npm run lint && npm run clean-cache && next",
 		"start": "next start",
-		"lint": "eslint --fix --ext .js pages components libraries constants actions reducers",
-		"lint:watch": "esw -w --fix pages components libraries constants actions reducers",
+		"lint": "eslint --fix --ext .js pages components libraries globals",
+		"lint:watch": "esw -w --fix pages components libraries globals",
 		"build": "next build",
 		"build:server": "NEXT_TARGET=server next build",
 		"clean-cache": "rimraf -rf ./node_modules/.cache",
@@ -50,6 +50,7 @@
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.0.3",
+		"dotenv": "^8.2.0",
 		"eslint": "^6.2.0",
 		"eslint-config-airbnb": "^18.0.1",
 		"eslint-config-prettier": "^6.5.0",
